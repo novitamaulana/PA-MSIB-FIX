@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Recommender System</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Laila:wght@700&display=swap" rel="stylesheet">
+</head>
+
+<body style="font-family: 'Laila' ;" class="bg-[#0A525A] h-screen text-[#0A525A]">
+    <div class="h-full">
+        <div class="w-full h-20 bg-[#F29F05] flex justify-end items-center px-10 gap-20">
+            <a href="/" class="flex gap-1 text-white p-2 rounded-lg w-40 items-center justify-center whitespace-nowrap">
+              <img src="static/images/dashboard.png" width="33" height="33" alt="">
+              <p>Dashboard</p>
+            </a>
+            <a href="#" class="flex items-center gap-1 text-white">
+                <div class="h-8 w-8 rounded-full bg-[#0A525A]"></div>
+                <iconify-icon icon="tabler:logout" width="35" height="35"></iconify-icon>
+                <p>Logout</p>
+            </a>
+        </div>                 
+             
+        <div class="p-10">
+            <div class="rounded-2xl bg-[#E7E6E6] relative">
+                <div class="border-b border-black py-5 absolute top-0 w-full bg-[#E7E6E6] rounded-t-2xl drop-shadow-2xl">
+                    <h1 class="text-xl font-semibold text-center">RECOMMENDER SYSTEM</h1>
+                </div>
+                <form action="/predict" method="post">
+                <div class="p-4 pt-20">
+                    <div class="grid grid-cols-2">
+                      <div class="space-y-5">
+                          <div class="flex flex-col space-y-2">
+                            <label for="nama" class="form-label">Nama: </label>
+                            <input type="text" name="nama" class="bg-[#E4990D] rounded-2xl h-10" id="nama" required>
+                        </div>
+                        <div class="flex flex-col space-y-2">
+                          <p class="mb-0">Jenis Kelamin :</p>
+                          <label class="form-check-label mr-5 bg-[#E4990D] text-[#fcf5e6] py-2 px-10 w-min rounded-2xl whitespace-nowrap" for="pria">
+                            <input class="form-check-input" name="jenis_kelamin" type="radio" value="pria" id="pria" required>
+                            Pria
+                          </label>
+                          <label class="form-check-label bg-[#E4990D] text-[#fcf5e6] py-2 px-10 rounded-2xl w-min whitespace-nowrap" for="wanita">
+                            <input class="form-check-input" name="jenis_kelamin" type="radio" value="wanita" id="wanita">
+                            Wanita
+                          </label>
+                        </div>
+                        <div class="flex flex-col space-y-2">
+                          <p class="mb-0">Umur :<br></p>
+                          <p style="font-size:small">
+                            Mohon membaca intruksi dengan saksama sebelum memilih kategori umur anda:<br>
+                            1. Wanita dengan kategori umum hanya dapat memilih (diatas 0 tahun) <br>
+                            2. Pria dengan kategori  anak-anak dapat memilih (dibawah 18 tahun)<br>
+                            3. Pria dengan kategori umum dapat memilih (diatas 0 tahun)
+                          </p>
+                          <label class="form-check-label mr-5 bg-[#E4990D] text-[#fcf5e6] py-2 px-10 rounded-2xl w-min whitespace-nowrap" for="atas0tahun">
+                            <input class="form-check-input" name="umur" type="radio" value="Diatas 0 Tahun" id="atas_0tahun" required>
+                            Diatas 0 Tahun
+                          </label>
+                          <label class="form-check-label bg-[#E4990D] text-[#fcf5e6] py-2 px-10 rounded-2xl w-min whitespace-nowrap" for="bawah18tahun">
+                            <input class="form-check-input" name="umur" type="radio" value="Dibawah 18 Tahun" id="bawah_18tahun">
+                            Dibawah 18 Tahun
+                          </label>
+                        </div>
+                        <div class="flex flex-col space-y-2">
+                          <label for="provinsi">Provinsi :</label>
+                          <select class="form-select mb-3 bg-[#E4990D] text-[#fcf5e6] rounded-2xl h-12" name="provinsi" id="provinsi" required>
+                            <option value="" selected disabled>Pilih salah satu</option>
+                            <option value="Nanggroe Aceh Darussalam">Nanggroe Aceh Darussalam</option>
+                            <option value="Sumatra Utara">Sumatra Utara</option>
+                            <option value="Sumatera Selatan">Sumatera Selatan</option>
+                            <option value="Sumatra Barat">Sumatra Barat</option>
+                            <option value="Bengkulu">Bengkulu</option>
+                            <option value="Riau">Riau</option>
+                            <option value="Kepulauan Riau">Kepulauan Riau</option>
+                            <option value="Jambi">Jambi</option>
+                            <option value="Lampung">Lampung</option>
+                            <option value="Bangka Belitung">Bangka Belitung</option>
+                            <option value="Kalimantan Timur">Kalimantan Timur</option>
+                            <option value="Kalimantan Barat">Kalimantan Barat</option>
+                            <option value="Kalimantan Tengah">Kalimantan Tengah</option>
+                            <option value="Kalimantan Selatan">Kalimantan Selatan</option>
+                            <option value="Kalimantan Utara">Kalimantan Utara</option>
+                            <option value="DKI Jakarta">DKI Jakarta</option>
+                            <option value="Banten">Banten</option>
+                            <option value="Jawa Barat">Jawa Barat</option>
+                            <option value="Jawa Tengah">Jawa Tengah</option>
+                            <option value="DI Yogyakarta">DI Yogyakarta</option>
+                            <option value="Jawa Timur">Jawa Timur</option>
+                            <option value="Bali">Bali</option>
+                            <option value="NTB">NTB</option>
+                            <option value="NTT">NTT</option>
+                            <option value="Sulawesi Utara">Sulawesi Utara</option>
+                            <option value="Sulawesi Barat">Sulawesi Barat</option>
+                            <option value="Sulawesi Tengah">Sulawesi Tengah</option>
+                            <option value="Gorontalo">Gorontalo</option>
+                            <option value="Sulawesi Tenggara">Sulawesi Tenggara</option>
+                            <option value="Sulawesi Selatan">Sulawesi Selatan</option>
+                            <option value="Maluku Utara">Maluku Utara</option>
+                            <option value="Maluku">Maluku</option>
+                            <option value="Papua Barat">Papua Barat</option>
+                            <option value="Papua">Papua</option>
+                          </select>
+                        </div>
+                        <div class="flex flex-col space-y-2">
+                          <p class="mb-0">Jenis Kekerasan Seksual yang didapatkan :</p>
+                          <label class="form-check-label mr-5 bg-[#E4990D] text-[#fcf5e6] py-2 px-10 rounded-2xl w-min whitespace-nowrap" for="Fisik">
+                            <input class="form-check-input" name="jenis_kekerasan" type="radio" value="Fisik" id="Fisik" required>
+                            Fisik
+                          </label>
+                          <label class="form-check-label bg-[#E4990D] text-[#fcf5e6] py-2 px-10 rounded-2xl w-min whitespace-nowrap" for="Verbal">
+                            <input class="form-check-input" name="jenis_kekerasan" type="radio" value="Verbal" id="Verbal">
+                            Verbal
+                          </label>
+                        </div>
+                        <div class="flex flex-col space-y-2">
+                          <p class="mb-0">Anda Membutuhkan Pelayanan di Bidang? :</p>
+                          <label class="form-check-label mr-5 bg-[#E4990D] text-[#fcf5e6] py-2 px-10 rounded-2xl w-min whitespace-nowrap" for="Psikologis">
+                            <input class="form-check-input" name="jenis_lembaga" type="radio" value="Psikologis" id="Psikologis" required>
+                            Psikologis
+                          </label>
+                          <label class="form-check-label bg-[#E4990D] text-[#fcf5e6] py-2 px-10 rounded-2xl w-min whitespace-nowrap" for="Hukum">
+                            <input class="form-check-input" name="jenis_lembaga" type="radio" value="Hukum" id="Hukum">
+                            Hukum
+                          </label>
+                        </div>
+                        <!-- Button Submit -->
+                        <div class="d-flex justify-content-end mt-5">
+                          <button type="submit" class="bg-[#0A525A] text-[#F29F05] py-5 px-10 float-right rounded-xl w-min whitespace-nowrap">SIMPAN</button>
+                        </div>
+                        <!-- End of Button Submit -->
+                      </div>
+                      <div class="bg-[#f7d8a1] p-8 rounded-2xl mx-20 space-y-10 justify-center items-center display-block">
+                        <h3 class="text-center text-xl">Layanan yang tepat untuk anda</h2>
+                          {% if hasil_alamat %}
+                          <p>
+                            nama    : <br/>{{hasil_nama}} <br/><br/> 
+                            profile : <br/>{{hasil_profile}} <br/><br/> 
+                            alamat  : <br/>{{hasil_alamat}} <br/><br/> 
+                            kontak  : <br/>{{hasil_kontak}} 
+                            <hr color="#0A525A"><br/><br/> 
+                            nama : <br/>{{hasil_nama2}} <br/><br/> 
+                            profile : <br/>{{hasil_profile2}} <br/><br/> 
+                            alamat : <br/>{{hasil_alamat2}} <br/><br/> 
+                            kontak  : <br/>{{hasil_kontak2}} 
+                          </p>
+                          {% endif %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
+</html>
